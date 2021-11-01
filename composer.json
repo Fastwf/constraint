@@ -1,0 +1,25 @@
+{
+    "name": "fastwf/constraint",
+    "description": "Data validation PHP library",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "David BELBEZE",
+            "email": "david.belbeze@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Fastwf\\Constraint\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Fastwf\\Tests": "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    }
+}
