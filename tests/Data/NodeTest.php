@@ -17,7 +17,7 @@ class NodeTest extends TestCase
     {
         $node = new Node(["value" => self::VALUE]);
 
-        $this->assertEquals(self::VALUE, $node->getValue());
+        $this->assertEquals(self::VALUE, $node->get());
         $this->assertTrue($node->isDefined());
     }
 
@@ -28,7 +28,7 @@ class NodeTest extends TestCase
     {
         $node = new Node(["value" => self::VALUE, "isDefined" => false]);
 
-        $this->assertEquals(self::VALUE, $node->getValue());
+        $this->assertEquals(self::VALUE, $node->get());
         $this->assertTrue($node->isDefined());
     }
 
@@ -39,7 +39,7 @@ class NodeTest extends TestCase
     {
         $node = new Node(["value" => null]);
 
-        $this->assertEquals(null, $node->getValue());
+        $this->assertEquals(null, $node->get());
         $this->assertTrue($node->isDefined());
     }
 
@@ -50,7 +50,7 @@ class NodeTest extends TestCase
     {
         $node = new Node(["value" => null, "isDefined" => true]);
 
-        $this->assertEquals(null, $node->getValue());
+        $this->assertEquals(null, $node->get());
         $this->assertTrue($node->isDefined());
     }
 
@@ -61,7 +61,7 @@ class NodeTest extends TestCase
     {
         $node = new Node(["value" => null, "isDefined" => false]);
 
-        $this->assertEquals(null, $node->getValue());
+        $this->assertEquals(null, $node->get());
         $this->assertFalse($node->isDefined());
     }
 
@@ -72,7 +72,7 @@ class NodeTest extends TestCase
     {
         $node = new Node();
 
-        $this->assertEquals(null, $node->getValue());
+        $this->assertEquals(null, $node->get());
         $this->assertFalse($node->isDefined());
     }
 
@@ -82,6 +82,44 @@ class NodeTest extends TestCase
     public function test__get()
     {
         $this->assertFalse((new Node())->any->isDefined());
+    }
+
+    /**
+     * @covers Fastwf\Constraint\Data\Node
+     */
+    public function test__set()
+    {
+        $node = new Node(['value' => self::VALUE]);
+
+        $node->any = self::VALUE;
+
+        $this->assertFalse($node->any->isDefined());
+    }
+
+    /**
+     * @covers Fastwf\Constraint\Data\Node
+     */
+    public function test__isset()
+    {
+        $node = new Node(['value' => self::VALUE]);
+
+        $this->assertFalse(isset($node->any));
+    }
+
+    /**
+     * @covers Fastwf\Constraint\Data\Node
+     */
+    public function testFrom()
+    {
+        $this->assertFalse(Node::from()->isDefined());
+    }
+
+    /**
+     * @covers Fastwf\Constraint\Data\Node
+     */
+    public function testFromValue()
+    {
+        $this->assertEquals(self::VALUE, Node::from(['value' => self::VALUE])->get());
     }
 
 }

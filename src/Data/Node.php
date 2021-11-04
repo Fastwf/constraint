@@ -2,6 +2,8 @@
 
 namespace Fastwf\Constraint\Data;
 
+use Fastwf\Constraint\Data\ArrayNode;
+
 /**
  * Node object that hold values and allows to proxy more complex data.
  */
@@ -13,7 +15,7 @@ class Node
      *
      * @var mixed
      */
-    private $value;
+    protected $value;
 
     /**
      * Indicate if the value hold is defined or not.
@@ -36,7 +38,7 @@ class Node
      *
      * @return mixed
      */
-    public function getValue()
+    public function get()
     {
         return $this->value;
     }
@@ -106,7 +108,58 @@ class Node
      */
     public function __set($name, $value)
     {
-        // Ignore for simple node -> cannot hold sub values
+        switch (\gettype($this->value)) {
+            case 'array':
+                $this->value[$name] = $value;
+                break;
+            case 'object':
+                new \ErrorException("Not implemented");
+                break;
+            default:
+                // Ignore
+                break;
+        }
+    }
+
+    /**
+     * Check if the property exists.
+     *
+     * @param string $name property name
+     * @return boolean true when is set
+     */
+    public function __isset($name)
+    {
+        return false;
+    }
+
+    /**
+     * Node factory from given arguments.
+     *
+     * @param array $args the node arguments ({@see Node::set($args)} for details)
+     * @return Fastwf\Constraint\Data\Node the node instanciated
+     */
+    public static function from($args=[])
+    {
+        if (\array_key_exists("value", $args))
+        {
+            switch (\gettype($args["value"])) {
+                case 'array':
+                    $node = new ArrayNode($args);
+                    break;
+                case 'object':
+                    throw new \ErrorException("Not implemented");
+                    break;
+                default:
+                    $node = new Node($args);
+                    break;
+            }
+        }
+        else
+        {
+            $node = new Node();
+        }
+
+        return $node;
     }
 
 }
