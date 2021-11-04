@@ -16,7 +16,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Fastwf\\Tests": "tests/"
+            "Fastwf\\Tests\\": "tests/"
         }
     },
     "require-dev": {
