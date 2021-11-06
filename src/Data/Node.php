@@ -3,6 +3,7 @@
 namespace Fastwf\Constraint\Data;
 
 use Fastwf\Constraint\Data\ArrayNode;
+use Fastwf\Constraint\Data\ObjectNode;
 
 /**
  * Node object that hold values and allows to proxy more complex data.
@@ -108,17 +109,7 @@ class Node
      */
     public function __set($name, $value)
     {
-        switch (\gettype($this->value)) {
-            case 'array':
-                $this->value[$name] = $value;
-                break;
-            case 'object':
-                new \ErrorException("Not implemented");
-                break;
-            default:
-                // Ignore
-                break;
-        }
+        // Ignore
     }
 
     /**
@@ -147,7 +138,7 @@ class Node
                     $node = new ArrayNode($args);
                     break;
                 case 'object':
-                    throw new \ErrorException("Not implemented");
+                    $node = new ObjectNode($args);
                     break;
                 default:
                     $node = new Node($args);

@@ -17,6 +17,11 @@ class ArrayNode extends Node
             : new Node();
     }
 
+    public function __set($name, $value)
+    {
+        $this->value[$name] = $value;
+    }
+
     public function __isset($name)
     {
         return \array_key_exists($name, $this->value);
