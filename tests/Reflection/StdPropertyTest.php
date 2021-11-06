@@ -10,9 +10,9 @@ use Fastwf\Constraint\Exceptions\NodeException;
 class StdPropertyTest extends TestCase
 {
 
-    private \ReflectionClass $reflection;
+    private $reflection;
 
-    private Data $data;
+    private $data;
 
     protected function setUp(): void
     {
