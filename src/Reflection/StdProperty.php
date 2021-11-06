@@ -34,12 +34,12 @@ class StdProperty extends Property
     {
         if ($this->getter === null)
         {
-            $name = $this->name;
+            $propName = $this->name;
             
             // 1 - Search for public method with the same name as the property
             // 2 - Search for convention getter method name
-            $suffix = \strtoupper($name[0]) . \substr($name, 1, \strlen($name) - 1);
-            foreach ([$name, "get$suffix", "is$suffix", "has$suffix"] as $methodName) {
+            $suffix = \strtoupper($propName[0]) . \substr($propName, 1, \strlen($propName) - 1);
+            foreach ([$propName, "get$suffix", "is$suffix", "has$suffix"] as $methodName) {
                 if ($this->reflection->hasMethod($methodName))
                 {
                     $method = $this->reflection->getMethod($methodName);
@@ -76,9 +76,9 @@ class StdProperty extends Property
     {
         if ($this->setter === null)
         {
-            $name = $this->name;
+            $propName = $this->name;
             // 1 - Verify that the setter exists and it's an accessible method
-            $methodName = "set" . \strtoupper($name[0]) . \substr($name, 1, \strlen($name) - 1);
+            $methodName = "set" . \strtoupper($propName[0]) . \substr($propName, 1, \strlen($propName) - 1);
 
             if ($this->reflection->hasMethod($methodName))
             {
