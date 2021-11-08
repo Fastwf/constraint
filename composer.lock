@@ -4,8 +4,49 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "024604ac385f8db42f2e977f5dc73973",
-    "packages": [],
+    "content-hash": "d5228524537a2dc5db221a4c2b441ebf",
+    "packages": [
+        {
+            "name": "fastwf/interpolation",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Fastwf/interpolation.git",
+                "reference": "ca0170aca78e379f3352fdeea80f184b5515ad54"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Fastwf/interpolation/zipball/ca0170aca78e379f3352fdeea80f184b5515ad54",
+                "reference": "ca0170aca78e379f3352fdeea80f184b5515ad54",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Fastwf\\Interpolation\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "David BELBEZE",
+                    "email": "david.belbeze@gmail.com"
+                }
+            ],
+            "description": "String interpolation library",
+            "support": {
+                "issues": "https://github.com/Fastwf/interpolation/issues",
+                "source": "https://github.com/Fastwf/interpolation/tree/1.0.0"
+            },
+            "time": "2021-11-08T11:48:18+00:00"
+        }
+    ],
     "packages-dev": [
         {
             "name": "doctrine/instantiator",

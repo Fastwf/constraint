@@ -37,6 +37,16 @@ class Violation
     }
 
     /**
+     * Getter for $value that correspond this violation.
+     *
+     * @return void
+     */
+    public function &getValue()
+    {
+        return $this->value;
+    }
+
+    /**
      * Access to the violations array (by reference).
      *
      * @return array

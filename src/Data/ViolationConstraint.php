@@ -52,7 +52,7 @@ class ViolationConstraint
      */
     public function getParameters()
     {
-        return $this->code;
+        return $this->parameters;
     }
 
     /**
