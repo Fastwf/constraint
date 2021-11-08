@@ -25,7 +25,7 @@ class ValidationContext
      */
     private $parent;
 
-    public function __constraint($root, $parent)
+    public function __construct($root, $parent)
     {
         $this->root = $root;
         $this->parent = $parent;
