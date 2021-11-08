@@ -4,6 +4,8 @@ namespace Fastwf\Constraint\Api;
 
 use Fastwf\Constraint\Data\Node;
 use Fastwf\Constraint\Api\ValidationContext;
+use Fastwf\Constraint\Api\ViolationIterator;
+use Fastwf\Constraint\Api\SimpleTemplateProvider;
 
 /**
  * Validator object to use to validate values using a constraint definition.
@@ -26,15 +28,23 @@ class Validator
     protected $violation;
 
     /**
+     * The violation iterator for injecting error message from error code.
+     *
+     * @var Fastwf\Constraint\Api\ViolationIterator
+     */
+    protected $iterator;
+
+    /**
      * A boolean that indicate if the violation property contains interpolated messages or not.
      *
      * @var boolean
      */
     protected $isMessageInterpolated;
 
-    public function __construct($constraint)
+    public function __construct($constraint, $provider = null)
     {
         $this->constraint = $constraint;
+        $this->iterator = new ViolationIterator($provider === null ? new SimpleTemplateProvider() : $provider);
     }
 
     /**
@@ -64,7 +74,8 @@ class Validator
     {
         if ($this->violation !== null && !$this->isMessageInterpolated)
         {
-            // TODO: Inject error message interpolated before returning the violation object
+            // Inject error message interpolated before returning the violation object
+            $this->iterator->iterate($this->violation);
             $this->isMessageInterpolated = true;
         }
 
