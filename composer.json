@@ -23,6 +23,7 @@
         "phpunit/phpunit": "^9.5"
     },
     "require": {
+        "ext-mbstring": "*",
         "fastwf/interpolation": "^1.0"
     }
 }
