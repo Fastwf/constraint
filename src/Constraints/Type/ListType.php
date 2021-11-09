@@ -12,7 +12,10 @@ use Fastwf\Constraint\Data\ViolationConstraint;
 class ListType extends Type
 {
 
-    public function __construct() {}
+    public function __construct() {
+        // validate method is overriden by this calss.
+        //  So is not necessary to call the parent constructor that setup the parent::validate
+    }
 
     public function validate($node, $context)
     {
