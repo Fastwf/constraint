@@ -6,6 +6,9 @@ use Fastwf\Constraint\Api\Constraint;
 
 /**
  * Validate a value based on string values enumeration.
+ * 
+ * This not control the type and can result un error.
+ * When the input data is of unknown type it must be used with {@see Fastwf\Tests\Constraints\Type\StringType}.
  */
 class Enum implements Constraint
 {

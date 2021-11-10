@@ -14,6 +14,7 @@ class SimpleTemplateProvider implements TemplateProvider
         'type' => 'Expect a value of \'%{type}\' type',
         'minLength' => 'The minimum length is %{length}, actually it is %{actual}',
         'maxLength' => 'The maximum length is %{length}, actually it is %{actual}',
+        'pattern' => 'The value does not match %{pattern} pattern',
         'enum' => 'The value must be one of %{enum}',
     ];
 
