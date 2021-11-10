@@ -5,9 +5,9 @@ namespace Fastwf\Tests\Constraints\Type;
 use PHPUnit\Framework\TestCase;
 use Fastwf\Constraint\Data\Node;
 use Fastwf\Constraint\Api\ValidationContext;
-use Fastwf\Constraint\Constraints\Type\ListType;
+use Fastwf\Constraint\Constraints\Type\ArrayType;
 
-class ListTypeTest extends TestCase
+class ArrayTypeTest extends TestCase
 {
 
     private $context;
@@ -19,14 +19,14 @@ class ListTypeTest extends TestCase
     
     /**
      * @covers Fastwf\Constraint\Constraints\Type\Type
-     * @covers Fastwf\Constraint\Constraints\Type\ListType
+     * @covers Fastwf\Constraint\Constraints\Type\ArrayType
      * @covers Fastwf\Constraint\Api\ValidationContext
      * @covers Fastwf\Constraint\Data\Node
      * @covers Fastwf\Constraint\Data\ArrayNode
      */
     public function testValidateEmpty()
     {
-        $validator = new ListType();
+        $validator = new ArrayType();
 
         $this->assertNull($validator->validate(
             Node::from(['value' => []]),
@@ -36,14 +36,14 @@ class ListTypeTest extends TestCase
     
     /**
      * @covers Fastwf\Constraint\Constraints\Type\Type
-     * @covers Fastwf\Constraint\Constraints\Type\ListType
+     * @covers Fastwf\Constraint\Constraints\Type\ArrayType
      * @covers Fastwf\Constraint\Api\ValidationContext
      * @covers Fastwf\Constraint\Data\Node
      * @covers Fastwf\Constraint\Data\ArrayNode
      */
     public function testValidateNotEmpty()
     {
-        $validator = new ListType();
+        $validator = new ArrayType();
 
         $this->assertNull($validator->validate(
             Node::from(['value' => ["first", "second"]]),
@@ -53,7 +53,7 @@ class ListTypeTest extends TestCase
     
     /**
      * @covers Fastwf\Constraint\Constraints\Type\Type
-     * @covers Fastwf\Constraint\Constraints\Type\ListType
+     * @covers Fastwf\Constraint\Constraints\Type\ArrayType
      * @covers Fastwf\Constraint\Api\ValidationContext
      * @covers Fastwf\Constraint\Data\Node
      * @covers Fastwf\Constraint\Data\ArrayNode
@@ -62,7 +62,7 @@ class ListTypeTest extends TestCase
      */
     public function testValidateErrorObject()
     {
-        $validator = new ListType();
+        $validator = new ArrayType();
 
         $this->assertNotNull($validator->validate(
             Node::from(['value' => ['foo' => 'bar']]),
@@ -72,7 +72,7 @@ class ListTypeTest extends TestCase
     
     /**
      * @covers Fastwf\Constraint\Constraints\Type\Type
-     * @covers Fastwf\Constraint\Constraints\Type\ListType
+     * @covers Fastwf\Constraint\Constraints\Type\ArrayType
      * @covers Fastwf\Constraint\Api\ValidationContext
      * @covers Fastwf\Constraint\Data\Node
      * @covers Fastwf\Constraint\Data\Violation
@@ -80,7 +80,7 @@ class ListTypeTest extends TestCase
      */
     public function testValidateError()
     {
-        $validator = new ListType();
+        $validator = new ArrayType();
 
         $this->assertNotNull($validator->validate(
             Node::from(['value' => 'test']),

@@ -9,7 +9,7 @@ use Fastwf\Constraint\Data\ViolationConstraint;
 /**
  * Type constraint validation for array as list.
  */
-class ListType extends Type
+class ArrayType extends Type
 {
 
     public function __construct() {
@@ -40,7 +40,7 @@ class ListType extends Type
 
         return $isList
             ? null
-            : $context->violation($value, $this->getName(), ['type' => 'list']);
+            : $context->violation($value, $this->getName(), ['type' => 'array']);
     }
 
 }
