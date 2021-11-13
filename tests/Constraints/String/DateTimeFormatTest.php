@@ -22,6 +22,7 @@ class DateTimeFormatTest extends TestCase
      * @covers Fastwf\Constraint\Api\ValidationContext
      * @covers Fastwf\Constraint\Constraints\String\Format
      * @covers Fastwf\Constraint\Constraints\String\DateTimeFormat
+     * @covers Fastwf\Constraint\Utils\Range
      */
     public function testValidateUtc()
     {
@@ -38,6 +39,7 @@ class DateTimeFormatTest extends TestCase
      * @covers Fastwf\Constraint\Api\ValidationContext
      * @covers Fastwf\Constraint\Constraints\String\Format
      * @covers Fastwf\Constraint\Constraints\String\DateTimeFormat
+     * @covers Fastwf\Constraint\Utils\Range
      */
     public function testValidateOffset()
     {
@@ -92,6 +94,7 @@ class DateTimeFormatTest extends TestCase
      * @covers Fastwf\Constraint\Api\ValidationContext
      * @covers Fastwf\Constraint\Constraints\String\Format
      * @covers Fastwf\Constraint\Constraints\String\DateTimeFormat
+     * @covers Fastwf\Constraint\Utils\Range
      */
     public function testValidateErrorOffset()
     {
