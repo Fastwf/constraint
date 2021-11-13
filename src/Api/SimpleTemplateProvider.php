@@ -16,6 +16,7 @@ class SimpleTemplateProvider implements TemplateProvider
         'maxLength' => 'The maximum length is %{length}, actually it is %{actual}',
         'pattern' => 'The value does not match %{pattern} pattern',
         'enum' => 'The value must be one of %{enum}',
+        'format' => 'The value must respect the \'%{format}\' format',
     ];
 
     public function getTemplate($code)
