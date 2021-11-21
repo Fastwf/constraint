@@ -2,20 +2,12 @@
 
 namespace Fastwf\Tests\Constraints\Type;
 
-use PHPUnit\Framework\TestCase;
 use Fastwf\Constraint\Data\Node;
-use Fastwf\Constraint\Api\ValidationContext;
+use Fastwf\Tests\Constraints\ConstraintTestCase;
 use Fastwf\Constraint\Constraints\Type\ArrayType;
 
-class ArrayTypeTest extends TestCase
+class ArrayTypeTest extends ConstraintTestCase
 {
-
-    private $context;
-
-    protected function setUp(): void
-    {
-        $this->context = new ValidationContext(null, null);
-    }
     
     /**
      * @covers Fastwf\Constraint\Constraints\Type\Type

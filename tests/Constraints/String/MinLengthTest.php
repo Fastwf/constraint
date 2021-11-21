@@ -2,20 +2,12 @@
 
 namespace Fastwf\Tests\Constraints\String;
 
-use PHPUnit\Framework\TestCase;
 use Fastwf\Constraint\Data\Node;
-use Fastwf\Constraint\Api\ValidationContext;
+use Fastwf\Tests\Constraints\ConstraintTestCase;
 use Fastwf\Constraint\Constraints\String\MinLength;
 
-class MinLengthTest extends TestCase
+class MinLengthTest extends ConstraintTestCase
 {
-
-    private $context;
-
-    protected function setUp(): void
-    {
-        $this->context = new ValidationContext(null, null);
-    }
 
     /**
      * @covers Fastwf\Constraint\Data\Node

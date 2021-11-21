@@ -2,20 +2,12 @@
 
 namespace Fastwf\Tests\Constraints\String;
 
-use PHPUnit\Framework\TestCase;
 use Fastwf\Constraint\Data\Node;
-use Fastwf\Constraint\Api\ValidationContext;
 use Fastwf\Constraint\Constraints\String\Enum;
+use Fastwf\Tests\Constraints\ConstraintTestCase;
 
-class EnumTest extends TestCase
+class EnumTest extends ConstraintTestCase
 {
-
-    private $context;
-
-    protected function setUp(): void
-    {
-        $this->context = new ValidationContext(null, null);
-    }
 
     /**
      * @covers Fastwf\Constraint\Data\Node
