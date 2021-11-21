@@ -4,6 +4,7 @@ namespace Fastwf\Constraint\Constraints\String;
 
 use Fastwf\Constraint\Utils\Range;
 use Fastwf\Constraint\Constraints\String\Format;
+
 /**
  * Format constraint that control time that match the RFC3339 "partial-time" format.
  * 

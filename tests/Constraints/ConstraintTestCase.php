@@ -8,7 +8,7 @@ use Fastwf\Constraint\Api\ValidationContext;
 /**
  * Base class that allows to define the validation context on setup.
  */
-class ConstraintTestCase extends TestCase
+abstract class ConstraintTestCase extends TestCase
 {
 
     protected $context;
