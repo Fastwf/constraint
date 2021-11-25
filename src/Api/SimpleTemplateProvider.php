@@ -17,6 +17,10 @@ class SimpleTemplateProvider implements TemplateProvider
         'pattern' => 'The value does not match %{pattern} pattern',
         'enum' => 'The value must be one of %{enum}',
         'format' => 'The value must respect the \'%{format}\' format',
+        'not' => 'Definition is valid',
+        'allOf' => 'At least one definition is invalid',
+        'anyOf' => 'All definitions are invalid',
+        'oneOf' => 'None or more than one definition are valid',
     ];
 
     public function getTemplate($code)
