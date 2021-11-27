@@ -23,6 +23,7 @@ class SimpleTemplateProvider implements TemplateProvider
         'oneOf' => 'None or more than one definition are valid',
         'min' => 'The value must be %{sign} %{minimum}',
         'max' => 'The value must be %{sign} %{maximum}',
+        'multipleOf' => 'Expect a multiple of %{diviser}',
     ];
 
     public function getTemplate($code)
