@@ -21,6 +21,8 @@ class SimpleTemplateProvider implements TemplateProvider
         'allOf' => 'At least one definition is invalid',
         'anyOf' => 'All definitions are invalid',
         'oneOf' => 'None or more than one definition are valid',
+        'min' => 'The value must be %{sign} %{minimum}',
+        'max' => 'The value must be %{sign} %{maximum}',
     ];
 
     public function getTemplate($code)

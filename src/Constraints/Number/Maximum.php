@@ -49,7 +49,7 @@ class Maximum implements Constraint
 
         return $valid
             ? null
-            : $context->violation($value, 'min', ['maximum' => $this->maximum, 'sign' => ($this->exclusive ? '>' : '>=')]);
+            : $context->violation($value, 'max', ['maximum' => $this->maximum, 'sign' => ($this->exclusive ? '>' : '>=')]);
     }
 
 }
