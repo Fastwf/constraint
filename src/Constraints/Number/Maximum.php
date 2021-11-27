@@ -34,22 +34,32 @@ class Maximum implements Constraint
         $this->exclusive = $exclusive;
     }
 
+    /**
+     * Allows to get the arithmetic sign corresponding to the evaluation.
+     *
+     * @return string the arithmetic sign.
+     */
+    protected function getSign()
+    {
+        return $this->exclusive ? '<' : '<=';
+    }
+
     public function validate($node, $context)
     {
         $value = $node->get();
 
         if ($this->exclusive)
         {
-            $valid = $this->maximum > $value;
+            $valid = $value < $this->maximum;
         }
         else
         {
-            $valid = $this->maximum >= $value;
+            $valid = $value <= $this->maximum;
         }
 
         return $valid
             ? null
-            : $context->violation($value, 'max', ['maximum' => $this->maximum, 'sign' => ($this->exclusive ? '>' : '>=')]);
+            : $context->violation($value, 'max', ['maximum' => $this->maximum, 'sign' => $this->getSign()]);
     }
 
 }

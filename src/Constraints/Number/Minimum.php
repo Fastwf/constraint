@@ -34,22 +34,32 @@ class Minimum implements Constraint
         $this->exclusive = $exclusive;
     }
 
+    /**
+     * Allows to get the arithmetic sign corresponding to the evaluation.
+     *
+     * @return string the arithmetic sign.
+     */
+    protected function getSign()
+    {
+        return $this->exclusive ? '>' : '>=';
+    }
+
     public function validate($node, $context)
     {
         $value = $node->get();
 
         if ($this->exclusive)
         {
-            $valid = $this->minimum < $value;
+            $valid = $value > $this->minimum;
         }
         else
         {
-            $valid = $this->minimum <= $value;
+            $valid = $value >= $this->minimum;
         }
 
         return $valid
             ? null
-            : $context->violation($value, 'min', ['minimum' => $this->minimum, 'sign' => ($this->exclusive ? '<' : '<=')]);
+            : $context->violation($value, 'min', ['minimum' => $this->minimum, 'sign' => $this->getSign()]);
     }
 
 }

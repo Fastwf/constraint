@@ -29,7 +29,10 @@ class OneOf implements Constraint
                 ++$validation;
 
                 // Break the loop when 2 constraints validate the value 
-                if ($validation == 2) break;
+                if ($validation == 2)
+                {
+                    break;
+                }
             }
         }
 
