@@ -26,6 +26,8 @@ class SimpleTemplateProvider implements TemplateProvider
         'multipleOf' => 'Expect a multiple of %{diviser}',
         'not-null' => '\'null\' value not allowed',
         'items' => 'Invalid item definition',
+        'minItems' => 'The array must contains at least %{items} item(s), actually it is %{actual}',
+        'maxItems' => 'The array must contains a maximum of %{items} item(s), actually it is %{actual}',
     ];
 
     public function getTemplate($code)
