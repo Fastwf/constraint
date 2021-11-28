@@ -80,4 +80,22 @@ class ArrayNodeTest extends TestCase
         $this->assertEquals("bar", $node->foo->get());
     }
 
+    /**
+     * @covers Fastwf\Constraint\Data\Node
+     * @covers Fastwf\Constraint\Data\ArrayNode
+     * @covers Fastwf\Constraint\Utils\Iterators\ArrayNodeIterator
+     */
+    public function testGetIterator()
+    {
+        // Reconstitute the array using foreach operation
+        $array = [];
+        foreach (Node::from(['value' => self::VALUE]) as $index => $value)
+        {
+            $array[$index] = $value;
+        }
+
+        // Check the array has the key and the value is wrapped in Node
+        $this->assertTrue($array['foo'] instanceof Node);
+    }
+
 }

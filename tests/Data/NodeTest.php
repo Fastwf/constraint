@@ -122,4 +122,16 @@ class NodeTest extends TestCase
         $this->assertEquals(self::VALUE, Node::from(['value' => self::VALUE])->get());
     }
 
+    /**
+     * @covers Fastwf\Constraint\Data\Node
+     */
+    public function testGetIterator()
+    {
+        $iterator = Node::from(['value' => self::VALUE])->getIterator();
+        $iterator->rewind();
+
+        // For simple values, it return an empty iterator
+        $this->assertFalse($iterator->valid());
+    }
+
 }

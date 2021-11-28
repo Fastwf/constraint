@@ -8,7 +8,7 @@ use Fastwf\Constraint\Data\ObjectNode;
 /**
  * Node object that hold values and allows to proxy more complex data.
  */
-class Node 
+class Node implements \IteratorAggregate
 {
 
     /**
@@ -121,6 +121,17 @@ class Node
     public function __isset($name)
     {
         return false;
+    }
+
+    /**
+     * Get an iterator to iterate on value key/pair
+     *
+     * @return \Traversable
+     */
+    public function getIterator()
+    {
+        // By default a simple value have not items or key/value pairs
+        return new \EmptyIterator();
     }
 
     /**

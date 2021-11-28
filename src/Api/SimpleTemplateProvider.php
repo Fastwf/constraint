@@ -25,6 +25,7 @@ class SimpleTemplateProvider implements TemplateProvider
         'max' => 'The value must be %{sign} %{maximum}',
         'multipleOf' => 'Expect a multiple of %{diviser}',
         'not-null' => '\'null\' value not allowed',
+        'items' => 'Invalid item definition',
     ];
 
     public function getTemplate($code)
