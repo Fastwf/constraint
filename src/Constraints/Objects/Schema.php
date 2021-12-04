@@ -53,7 +53,7 @@ class Schema implements Constraint
     public function validate($node, $context)
     {
         // Create local array copy
-        $properties = $this->properties;
+        $cProperties = $this->properties;
 
         $objectContext = $context->getSubContext($node);        
         $objectViolation = null;
@@ -62,24 +62,24 @@ class Schema implements Constraint
         // Iterate on node properties to count properties and validate values
         $propertiesCount = 0;
         foreach ($node as $property => $childNode) {
-            if (isset($properties[$property]))
+            if (isset($cProperties[$property]))
             {
                 // Use the property validation
-                $violation = $properties[$property]->validate($childNode, $objectContext);
+                $violation = $cProperties[$property]->validate($childNode, $objectContext);
                 if ($violation !== null)
                 {
                     $this->setChildViolation($objectViolation, $value, $property, $violation);
                 }
 
                 // Remove the property to iterate only on missing properties
-                unset($properties[$property]);
+                unset($cProperties[$property]);
             }
             
             $propertiesCount++;
         }
 
         // Iterate on missing properties to check validation for required properties
-        foreach ($properties as $property => $constraint) {
+        foreach ($cProperties as $property => $constraint) {
             if ($constraint instanceof Required)
             {
                 // If the constraint is not a Required instance this will result probably on error.
