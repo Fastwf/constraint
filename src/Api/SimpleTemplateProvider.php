@@ -29,6 +29,9 @@ class SimpleTemplateProvider implements TemplateProvider
         'minItems' => 'The array must contains at least %{items} item(s), actually it is %{actual}',
         'maxItems' => 'The array must contains a maximum of %{items} item(s), actually it is %{actual}',
         'uniqueItems' => 'All items must be unique',
+        'minProperties' => 'The object must contains at least %{properties} propertie(s), actually it is %{actual}',
+        'maxProperties' => 'The object must contains a maximum of %{properties} propertie(s), actually it is %{actual}',
+        'required' => 'The value is required',
     ];
 
     public function getTemplate($code)
