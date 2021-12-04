@@ -50,7 +50,8 @@ abstract class Property
         }
         else
         {
-            $instance = new UndefinedProperty();
+            // Create standard property to try to access to the private variables of parent classes
+            $instance = new StdProperty($classReflection, null, $name);
         }
 
         return $instance;

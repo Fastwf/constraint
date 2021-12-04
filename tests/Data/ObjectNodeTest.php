@@ -27,6 +27,9 @@ class ObjectNodeTest extends TestCase
         $data->setAlive(true);
         $data->setRoot(false);
 
+        $data->setSuper('super');
+        $data->setSuperParent('superParent');
+
         $this->data = $data;
     }
 
@@ -73,7 +76,23 @@ class ObjectNodeTest extends TestCase
      * @covers Fastwf\Constraint\Data\Node
      * @covers Fastwf\Constraint\Data\ObjectNode
      * @covers Fastwf\Constraint\Reflection\Property
-     * @covers Fastwf\Constraint\Reflection\UndefinedProperty
+     * @covers Fastwf\Constraint\Reflection\StdProperty
+     * @covers Fastwf\Constraint\Reflection\Method
+     * @covers Fastwf\Constraint\Reflection\UndefinedGetterMethod
+     */
+    public function testGetSuper()
+    {
+        $node = new ObjectNode(['value' => $this->data]);
+
+        $this->assertEquals('super', $node->super->get());
+    }
+
+    /**
+     * @covers Fastwf\Constraint\Data\Node
+     * @covers Fastwf\Constraint\Data\ObjectNode
+     * @covers Fastwf\Constraint\Reflection\Property
+     * @covers Fastwf\Constraint\Reflection\StdProperty
+     * @covers Fastwf\Constraint\Reflection\UndefinedGetterMethod
      */
     public function testGetUndefined()
     {
@@ -117,7 +136,25 @@ class ObjectNodeTest extends TestCase
      * @covers Fastwf\Constraint\Data\Node
      * @covers Fastwf\Constraint\Data\ObjectNode
      * @covers Fastwf\Constraint\Reflection\Property
-     * @covers Fastwf\Constraint\Reflection\UndefinedProperty
+     * @covers Fastwf\Constraint\Reflection\StdProperty
+     * @covers Fastwf\Constraint\Reflection\Method
+     * @covers Fastwf\Constraint\Reflection\UndefinedSetterMethod
+     */
+    public function testSetSuper()
+    {
+        $node = new ObjectNode(['value' => $this->data]);
+
+        $node->super = 'SUPPER';
+
+        $this->assertEquals('SUPPER', $node->super->get());
+    }
+
+    /**
+     * @covers Fastwf\Constraint\Data\Node
+     * @covers Fastwf\Constraint\Data\ObjectNode
+     * @covers Fastwf\Constraint\Reflection\Property
+     * @covers Fastwf\Constraint\Reflection\StdProperty
+     * @covers Fastwf\Constraint\Reflection\UndefinedSetterMethod
      */
     public function testSetUndefined()
     {
@@ -134,7 +171,8 @@ class ObjectNodeTest extends TestCase
      * @covers Fastwf\Constraint\Reflection\Property
      * @covers Fastwf\Constraint\Reflection\PublicProperty
      * @covers Fastwf\Constraint\Reflection\StdProperty
-     * @covers Fastwf\Constraint\Reflection\UndefinedProperty
+     * @covers Fastwf\Constraint\Reflection\StdProperty
+     * @covers Fastwf\Constraint\Reflection\UndefinedGetterMethod
      * @covers Fastwf\Constraint\Reflection\Method
      */
     public function testIsset()
@@ -146,6 +184,7 @@ class ObjectNodeTest extends TestCase
 
         // Test cached value
         $this->assertTrue(isset($node->name));
+        $this->assertTrue(isset($node->superParent));
         $this->assertFalse(isset($node->undefined));
         // Test not cached values
         $this->assertTrue(isset($node->root));
@@ -167,6 +206,70 @@ class ObjectNodeTest extends TestCase
         $node = new ObjectNode(['value' => $this->data]);
 
         $this->assertTrue($node->parent instanceof ObjectNode);
+    }
+
+    /**
+     * @covers Fastwf\Constraint\Data\Node
+     * @covers Fastwf\Constraint\Data\ObjectNode
+     */
+    public function testGetIteratorNullValue()
+    {
+        $node = new ObjectNode(['value' => null]);
+
+        $this->assertTrue(empty(\iterator_to_array($node->getIterator())));
+    }
+
+    /**
+     * @covers Fastwf\Constraint\Data\Node
+     * @covers Fastwf\Constraint\Data\ObjectNode
+     * @covers Fastwf\Constraint\Reflection\Method
+     * @covers Fastwf\Constraint\Reflection\Property
+     * @covers Fastwf\Constraint\Reflection\PublicProperty
+     * @covers Fastwf\Constraint\Reflection\StdProperty
+     * @covers Fastwf\Constraint\Utils\Iterators\ObjectNodeIterator
+     */
+    public function testGetIterator()
+    {
+        $node = new ObjectNode(['value' => $this->data]);
+        
+        $nodes = \iterator_to_array($node->getIterator());
+
+        $this->assertEquals('super', $nodes['super']->get());
+    }
+
+    /**
+     * @covers Fastwf\Constraint\Data\Node
+     * @covers Fastwf\Constraint\Data\ObjectNode
+     * @covers Fastwf\Constraint\Reflection\Method
+     * @covers Fastwf\Constraint\Reflection\Property
+     * @covers Fastwf\Constraint\Reflection\PublicProperty
+     * @covers Fastwf\Constraint\Reflection\StdProperty
+     * @covers Fastwf\Constraint\Utils\Iterators\ObjectNodeIterator
+     */
+    public function testGetBuiltIn()
+    {
+        $node = new ObjectNode(['value' => $this->data]);
+
+        $this->assertEquals(
+            [
+                'name' => 'child',
+                'parent' => [
+                    'name' => null,
+                    'parent' => null,
+                    'root' => true,
+                    'isAlive' => null,
+                    'children' => null,
+                    'superParent' => null,
+                    'super' => null,
+                ],
+                'root' => false,
+                'isAlive' => true,
+                'children' => null,
+                'superParent' => 'superParent',
+                'super' => 'super',
+            ],
+            $node->getBuiltIn(),
+        );
     }
 
 }

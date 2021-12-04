@@ -45,6 +45,20 @@ class Node implements \IteratorAggregate
     }
 
     /**
+     * Retun the value with possible transformations to have basic php value type (boolean, integer, double, string, array, NULL).
+     * 
+     * array type can be a list or object with key/value pair.
+     * 
+     * @return mixed
+     */
+    public function getBuiltIn()
+    {
+        // For Node and ArrayNode class, the value hold is a boolean, integer, double, string, array or NULL value.
+        //  For object type, it's required to convert them to an array of key/value pair
+        return $this->value;
+    }
+
+    /**
      * Indicate if the value hold is defined or not.
      *
      * @return boolean

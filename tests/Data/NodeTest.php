@@ -134,4 +134,14 @@ class NodeTest extends TestCase
         $this->assertFalse($iterator->valid());
     }
 
+    /**
+     * @covers Fastwf\Constraint\Data\Node
+     */
+    public function testGetBuiltIn()
+    {
+        $node = Node::from(['value' => self::VALUE]);
+
+        $this->assertEquals(self::VALUE, $node->getBuiltIn());
+    }
+
 }

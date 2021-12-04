@@ -2,8 +2,9 @@
 
 namespace Fastwf\Tests\Model;
 
+use Fastwf\Tests\Model\SuperParent;
 
-class Data
+class Data extends SuperParent
 {
 
     public $name;

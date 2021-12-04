@@ -28,6 +28,17 @@ class ArrayNode extends Node
         return \array_key_exists($name, $this->value);
     }
 
+    public function getBuiltIn()
+    {
+        $builtIn = [];
+        // Use ArrayNodeIterator to auto convert to built in values
+        foreach ($this as $key => $node) {
+            $builtIn[$key] = $node->getBuiltIn();
+        }
+
+        return $builtIn;
+    }
+
     public function getIterator()
     {
         return new ArrayNodeIterator($this->value);

@@ -11,6 +11,16 @@ class UndefinedPropertyTest extends TestCase
 {
 
     /**
+     * @covers Fastwf\Constraint\Reflection\UndefinedProperty
+     */
+    public function testIsReadable()
+    {
+        $property = new UndefinedProperty();
+
+        $this->assertFalse($property->isReadable());
+    }
+
+    /**
      * @covers Fastwf\Constraint\Data\Node
      * @covers Fastwf\Constraint\Reflection\UndefinedProperty
      */

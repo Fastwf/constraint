@@ -98,4 +98,17 @@ class ArrayNodeTest extends TestCase
         $this->assertTrue($array['foo'] instanceof Node);
     }
 
+    /**
+     * @covers Fastwf\Constraint\Data\Node
+     * @covers Fastwf\Constraint\Data\ArrayNode
+     * @covers Fastwf\Constraint\Utils\Iterators\ArrayNodeIterator
+     */
+    public function testGetBuiltIn()
+    {
+        $array = [['name' => 'foo', 'age' => 25]];
+        $node = Node::from(['value' => $array]);
+
+        $this->assertEquals($array, $node->getBuiltIn());
+    }
+
 }

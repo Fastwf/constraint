@@ -17,12 +17,28 @@ class StdProperty extends Property
     private $getter = null;
     private $setter = null;
 
-    public function __construct($reflection, $property)
+    /**
+     * Constructor.
+     * 
+     * $property parameter have higher priority than $name
+     *
+     * @param ReflectionClass $reflection the reflection class instance
+     * @param ReflectionProperty|null $property the reflection property instance or null
+     * @param string|null $name the name of the property or null
+     */
+    public function __construct($reflection, $property, $name = null)
     {
         $this->reflection = $reflection;
 
         // Access to the property name and upper the first letter (when alpha)
-        $this->name = $property->getName();
+        //  $property parameter have higher priority than $name
+        if ($property === null) {
+            $this->name = $name;
+        }
+        else
+        {
+            $this->name = $property->getName();
+        }
     }
 
     /**

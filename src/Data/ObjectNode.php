@@ -5,7 +5,11 @@ namespace Fastwf\Constraint\Data;
 use Fastwf\Constraint\Data\Node;
 use Fastwf\Constraint\Reflection\Property;
 use Fastwf\Constraint\Reflection\UndefinedProperty;
+use Fastwf\Constraint\Utils\Iterators\ObjectNodeIterator;
 
+/**
+ * A node that hold any object type and allows to access to it's properties.
+ */
 class ObjectNode extends Node
 {
 
@@ -54,6 +58,24 @@ class ObjectNode extends Node
         // When value will be set but it's not possible (undefined property or missing setter) a NodeException is thrown.
 
         return $this->getProperty($name)->isReadable();
+    }
+
+    public function getBuiltIn()
+    {
+        $builtIn = [];
+        // Use ObjectNodeIterator to auto convert to built in values
+        foreach ($this as $key => $node) {
+            $builtIn[$key] = $node->getBuiltIn();
+        }
+
+        return $builtIn;
+    }
+
+    public function getIterator()
+    {
+        return $this->reflect === null
+            ? new \EmptyIterator()
+            : new ObjectNodeIterator($this->value, $this->reflect, $this->cache);
     }
 
 }
