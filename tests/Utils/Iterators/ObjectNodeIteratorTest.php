@@ -33,7 +33,7 @@ class ObjectNodeIteratorTest extends TestCase
             $index = \array_search($it->key(), $collector, true);
 
             // internal must not be provided, so index !== false
-            $this->assertTrue($index !== false);
+            $this->assertNotSame(false, $index);
             // remove the value property name from the array to verify that all readable properties are iterated
             unset($collector[$index]);
 
