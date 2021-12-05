@@ -14,10 +14,8 @@ class NotBlankTest extends ConstraintTestCase
      * @covers Fastwf\Constraint\Data\Violation
      * @covers Fastwf\Constraint\Data\ViolationConstraint
      * @covers Fastwf\Constraint\Api\ValidationContext
-     * @covers Fastwf\Constraint\Constraints\String\Format
      * @covers Fastwf\Constraint\Constraints\String\Blank
      * @covers Fastwf\Constraint\Constraints\String\NotBlank
-     * @covers Fastwf\Constraint\Utils\Net
      */
     public function testValidate()
     {
@@ -31,10 +29,8 @@ class NotBlankTest extends ConstraintTestCase
      * @covers Fastwf\Constraint\Data\Violation
      * @covers Fastwf\Constraint\Data\ViolationConstraint
      * @covers Fastwf\Constraint\Api\ValidationContext
-     * @covers Fastwf\Constraint\Constraints\String\Format
      * @covers Fastwf\Constraint\Constraints\String\Blank
      * @covers Fastwf\Constraint\Constraints\String\NotBlank
-     * @covers Fastwf\Constraint\Utils\Net
      */
     public function testValidateError()
     {
