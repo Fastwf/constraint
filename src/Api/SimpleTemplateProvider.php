@@ -17,6 +17,8 @@ class SimpleTemplateProvider implements TemplateProvider
         'pattern' => 'The value does not match %{pattern} pattern',
         'enum' => 'The value must be one of %{enum}',
         'format' => 'The value must respect the \'%{format}\' format',
+        'blank' => 'The value must not be blank',
+        'not-blank' => 'The value must be blank',
         'not' => 'Definition is valid',
         'allOf' => 'At least one definition is invalid',
         'anyOf' => 'All definitions are invalid',
