@@ -20,6 +20,13 @@ class Schema implements Constraint
     private $properties;
 
     /**
+     * The value constraint of unreferenced properties.
+     *
+     * @var Fastwf\Constraint\Api\Constraint
+     */
+    private $additionalProperties;
+
+    /**
      * The minimum number of properties of the object.
      *
      * @var int
@@ -40,12 +47,14 @@ class Schema implements Constraint
      * - 'properties': (optional) the list of property constraints
      * - 'minProperties': (optional) the minimum number of properties of the object.
      * - 'maxProperties': (optional) the maximum number of properties of the object.
+     * - 'additionalProperties': (optional) the constraint of unknown properties (by default no constraints)
      *
      * @param array $options the schema constraint validation options
      */
     public function __construct($options)
     {
         $this->properties = \array_key_exists('properties', $options) ? $options['properties'] : [];
+        $this->additionalProperties = \array_key_exists('additionalProperties', $options) ? $options['additionalProperties'] : null;
         $this->minProperties = \array_key_exists('minProperties', $options) ? $options['minProperties'] : 0;
         $this->maxProperties = \array_key_exists('maxProperties', $options) ? $options['maxProperties'] : null;
     }
@@ -62,17 +71,30 @@ class Schema implements Constraint
         // Iterate on node properties to count properties and validate values
         $propertiesCount = 0;
         foreach ($node as $property => $childNode) {
-            if (isset($cProperties[$property]))
+            if (\array_key_exists($property, $cProperties))
             {
                 // Use the property validation
-                $violation = $cProperties[$property]->validate($childNode, $objectContext);
-                if ($violation !== null)
-                {
-                    $this->setChildViolation($objectViolation, $value, $property, $violation);
-                }
+                $this->validateChildValue(
+                    $cProperties[$property],
+                    $objectViolation,
+                    $childNode,
+                    $value,
+                    $property,
+                    $objectContext
+                );
 
                 // Remove the property to iterate only on missing properties
                 unset($cProperties[$property]);
+            } else if ($this->additionalProperties !== null) {
+                // Use the additional property validation
+                $this->validateChildValue(
+                    $this->additionalProperties,
+                    $objectViolation,
+                    $childNode,
+                    $value,
+                    $property,
+                    $objectContext
+                );
             }
             
             $propertiesCount++;
@@ -115,6 +137,14 @@ class Schema implements Constraint
         }
 
         return $objectViolation;
+    }
+
+    protected function validateChildValue($constraint, &$objectViolation, $childNode, $value, $property, $objectContext) {
+        $violation = $constraint->validate($childNode, $objectContext);
+        if ($violation !== null)
+        {
+            $this->setChildViolation($objectViolation, $value, $property, $violation);
+        }
     }
 
     /**
