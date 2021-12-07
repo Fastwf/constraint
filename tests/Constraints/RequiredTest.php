@@ -46,6 +46,23 @@ class RequiredTest extends ConstraintTestCase
 
     /**
      * @covers Fastwf\Constraint\Data\Node
+     * @covers Fastwf\Constraint\Api\ValidationContext
+     * @covers Fastwf\Constraint\Constraints\Required
+     * @covers Fastwf\Constraint\Constraints\Type\Type
+     * @covers Fastwf\Constraint\Constraints\Type\IntegerType
+     */
+    public function testValidateOnlyRequired()
+    {
+        $constraint = new Required(true);
+
+        $this->assertNull($constraint->validate(
+            Node::from(['value' => "any"]),
+            $this->context,
+        ));
+    }
+
+    /**
+     * @covers Fastwf\Constraint\Data\Node
      * @covers Fastwf\Constraint\Data\Violation
      * @covers Fastwf\Constraint\Data\ViolationConstraint
      * @covers Fastwf\Constraint\Api\ValidationContext

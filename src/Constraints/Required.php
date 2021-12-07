@@ -20,17 +20,18 @@ class Required implements Constraint
     /**
      * The constraint to use to validate the value when the value is not null.
      *
-     * @var Fastwf\Constraint\Api\Constraint $constraint
+     * @var Fastwf\Constraint\Api\Constraint|null $constraint
      */
     protected $constraint;
 
     /**
      * Constructor
      *
-     * @param boolean $required
-     * @param Fastwf\Constraint\Api\Constraint $constraint
+     * @param boolean $required true when the value must be defined.
+     * @param Fastwf\Constraint\Api\Constraint|null $constraint the constraint to apply to the value when it's defined
+     *                                              (null for no value control).
      */
-    public function __construct($required = true, $constraint = [])
+    public function __construct($required = true, $constraint = null)
     {
         $this->required = $required;
         $this->constraint = $constraint;
@@ -40,7 +41,7 @@ class Required implements Constraint
     {
         if ($node->isDefined())
         {
-            return $this->constraint->validate($node, $context);
+            return $this->constraint === null ? null : $this->constraint->validate($node, $context);
         }
         else
         {
