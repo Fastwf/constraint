@@ -57,6 +57,20 @@ class ConstraintPoolTest extends TestCase
      * @covers Fastwf\Constraint\Build\Environment\ConstraintPool
      * @covers Fastwf\Constraint\Constraints\Required
      */
+    public function testGet()
+    {
+        $pool = new ConstraintPool();
+
+        $expected = new Required(false);
+        $pool->setLoaded('Model', $expected);
+
+        $this->assertEquals($expected, $pool->get('Model'));
+    }
+
+    /**
+     * @covers Fastwf\Constraint\Build\Environment\ConstraintPool
+     * @covers Fastwf\Constraint\Constraints\Required
+     */
     public function testAddLoadCallback()
     {
         $pool = new ConstraintPool();

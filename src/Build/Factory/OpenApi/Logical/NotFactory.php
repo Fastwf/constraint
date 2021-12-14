@@ -26,7 +26,8 @@ class NotFactory extends LogicalFactory
         $subConstraint = null;
         $this->environment->loadSchema($schema[$this->name], $subConstraint);
 
-        return [&$subConstraint];
+        $constraints = [&$subConstraint];
+        return $constraints;
     }
 
 }
