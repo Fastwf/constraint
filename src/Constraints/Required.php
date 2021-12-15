@@ -20,7 +20,7 @@ class Required implements Constraint
     /**
      * The constraint to use to validate the value when the value is not null.
      *
-     * @var Fastwf\Constraint\Api\Constraint|null $constraint
+     * @var Constraint|null $constraint
      */
     protected $constraint;
 
@@ -28,8 +28,8 @@ class Required implements Constraint
      * Constructor
      *
      * @param boolean $required true when the value must be defined.
-     * @param Fastwf\Constraint\Api\Constraint|null $constraint the constraint to apply to the value when it's defined
-     *                                              (null for no value control).
+     * @param Constraint|null $constraint the constraint to apply to the value when it's defined
+     *                        (null for no value control).
      */
     public function __construct($required = true, $constraint = null)
     {
