@@ -56,11 +56,12 @@ class SchemaTest extends ConstraintTestCase
      */
     public function testValidateErrors()
     {
+        $subConstraint = new ArrayType();
         $constraint = new Schema([
             'properties' => [
                 'name' => new StringType(),
                 'age' => new IntegerType(),
-                'wallets' => new Required(true, new ArrayType()),
+                'wallets' => new Required(true, $subConstraint),
             ],
             'minProperties' => 3,
             'maxProperties' => 3,
@@ -93,11 +94,12 @@ class SchemaTest extends ConstraintTestCase
      */
     public function testValidateMaxErrors()
     {
+        $subConstraint = new ArrayType();
         $constraint = new Schema([
             'properties' => [
                 'name' => new StringType(),
                 'age' => new IntegerType(),
-                'wallets' => new Required(true, new ArrayType()),
+                'wallets' => new Required(true, $subConstraint),
             ],
             'minProperties' => 3,
             'maxProperties' => 3,

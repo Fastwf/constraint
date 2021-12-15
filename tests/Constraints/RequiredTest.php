@@ -1,6 +1,6 @@
 <?php
 
-namespace Fastwf\Tests\Constraints\Number;
+namespace Fastwf\Tests\Constraints;
 
 use Fastwf\Constraint\Data\Node;
 use Fastwf\Tests\Constraints\ConstraintTestCase;
@@ -19,7 +19,8 @@ class RequiredTest extends ConstraintTestCase
      */
     public function testValidateOptional()
     {
-        $constraint = new Required(false, new IntegerType());
+        $subConstraint = new IntegerType();
+        $constraint = new Required(false, $subConstraint);
 
         $this->assertNull($constraint->validate(
             new Node(),
@@ -36,7 +37,8 @@ class RequiredTest extends ConstraintTestCase
      */
     public function testValidateRequired()
     {
-        $constraint = new Required(true, new IntegerType());
+        $subConstraint = new IntegerType();
+        $constraint = new Required(true, $subConstraint);
 
         $this->assertNull($constraint->validate(
             Node::from(['value' => 10]),
@@ -72,7 +74,8 @@ class RequiredTest extends ConstraintTestCase
      */
     public function testValidateOptionalError()
     {
-        $constraint = new Required(false, new IntegerType());
+        $subConstraint = new IntegerType();
+        $constraint = new Required(false, $subConstraint);
 
         $this->assertNotNull($constraint->validate(
             Node::from(['value' => null]),
@@ -91,7 +94,8 @@ class RequiredTest extends ConstraintTestCase
      */
     public function testValidateRequiredError()
     {
-        $constraint = new Required(true, new IntegerType());
+        $subConstraint = new IntegerType();
+        $constraint = new Required(true, $subConstraint);
 
         $this->assertNotNull($constraint->validate(
             new Node(),

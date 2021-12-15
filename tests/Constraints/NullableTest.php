@@ -1,6 +1,6 @@
 <?php
 
-namespace Fastwf\Tests\Constraints\Number;
+namespace Fastwf\Tests\Constraints;
 
 use Fastwf\Constraint\Data\Node;
 use Fastwf\Tests\Constraints\ConstraintTestCase;
@@ -19,7 +19,8 @@ class NullableTest extends ConstraintTestCase
      */
     public function testValidateNotNull()
     {
-        $constraint = new Nullable(true, new IntegerType());
+        $subConstraint = new IntegerType();
+        $constraint = new Nullable(true, $subConstraint);
 
         $this->assertNull($constraint->validate(
             Node::from(['value' => 100]),
@@ -53,7 +54,8 @@ class NullableTest extends ConstraintTestCase
      */
     public function testValidateNull()
     {
-        $constraint = new Nullable(true, new IntegerType());
+        $subConstraint = new IntegerType();
+        $constraint = new Nullable(true, $subConstraint);
 
         $this->assertNull($constraint->validate(
             Node::from(['value' => null]),
@@ -72,7 +74,8 @@ class NullableTest extends ConstraintTestCase
      */
     public function testValidateError()
     {
-        $constraint = new Nullable(false, new IntegerType());
+        $subConstraint = new IntegerType();
+        $constraint = new Nullable(false, $subConstraint);
 
         $this->assertNotNull($constraint->validate(
             Node::from(['value' => null]),
