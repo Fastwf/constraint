@@ -10,7 +10,7 @@ return [
             '$ref' => 'start-date.php',
         ],
         "end" => [
-            '$ref' => 'date.php',
+            '$ref' => 'primary@date.php',
         ],
     ],
     'required' => [

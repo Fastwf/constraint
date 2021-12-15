@@ -4,6 +4,7 @@ namespace Fastwf\Constraint\Build\Environment;
 
 use Fastwf\Constraint\Api\Constraint;
 use Fastwf\Constraint\Build\Loader\ILoader;
+use Fastwf\Constraint\Exceptions\LoadException;
 use Fastwf\Constraint\Build\Environment\ConstraintPool;
 
 /**
@@ -32,6 +33,23 @@ abstract class Environment
     {
         $this->loader = $loader;
         $this->pool = new ConstraintPool();
+    }
+
+    /**
+     * Return an array containing the source name and it's namespace.
+     *
+     * @param string $source the source name
+     * @return array an array like ['namespace', 'sourceName']
+     */
+    private function getSource($source)
+    {
+        $groups = [];
+        if (\preg_match('/^(?:([^@]+)@)?(.+)$/', $source, $groups) !== 1)
+        {
+            throw new LoadException("The source name '$source' is invalid");
+        }
+
+        return [$groups[1], $groups[2]];
     }
 
     /**
@@ -82,8 +100,9 @@ abstract class Environment
         {
             $this->pool->startLoading($source);
             // Load the schema from the source and build the constraint
+            $name = $this->getSource($source);
             $this->loadSchema(
-                $this->loader->load($source),
+                $this->loader->load($name[1], $name[0]),
                 $constraint,
             );
             $this->pool->setLoaded($source, $constraint);

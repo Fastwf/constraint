@@ -4,7 +4,7 @@
 
 return [
     'allOf' => [
-        ['$ref' => 'date.php'],
+        ['$ref' => 'primary@date.php'],
         [
             "type" => "object",
             "properties" => [

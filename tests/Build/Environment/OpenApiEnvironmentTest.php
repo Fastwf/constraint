@@ -22,6 +22,28 @@ class OpenApiEnvironmentTest extends TestCase
 
     /**
      * @covers Fastwf\Constraint\Build\Environment\Environment
+     * @covers Fastwf\Constraint\Build\Environment\ConstraintPool
+     * @covers Fastwf\Constraint\Build\Environment\OpenApiEnvironment
+     * @covers Fastwf\Constraint\Build\Loader\ArrayLoader
+     * @covers Fastwf\Constraint\Build\Loader\NameSpaceLoader
+     * @covers Fastwf\Constraint\Build\Factory\LogicalFactory
+     * @covers Fastwf\Constraint\Build\Factory\OpenApi\Logical\AllOfFactory
+     * @covers Fastwf\Constraint\Build\Factory\OpenApi\Logical\AnyOfFactory
+     * @covers Fastwf\Constraint\Build\Factory\OpenApi\Logical\NotFactory
+     * @covers Fastwf\Constraint\Build\Factory\OpenApi\Logical\OneOfFactory
+     */
+    public function testGetSourceInvalid()
+    {
+        $this->expectException(LoadException::class);
+
+        $env = new OpenApiEnvironment(null);
+
+        $constraint = null;
+        $env->load('', $constraint);
+    }
+
+    /**
+     * @covers Fastwf\Constraint\Build\Environment\Environment
      * @covers Fastwf\Constraint\Build\Environment\OpenApiEnvironment
      * @covers Fastwf\Constraint\Build\Loader\ArrayLoader
      * @covers Fastwf\Constraint\Build\Loader\NameSpaceLoader
@@ -350,6 +372,7 @@ class OpenApiEnvironmentTest extends TestCase
         $env = OpenApiEnvironment::getDefault(new FileSystemLoader(
             [
                 ILoader::DEFAULT => [self::SCHEMA_PATH],
+                'primary' => [__DIR__ . '/../../../resources/primary']
             ],
             ['php' => new PhpReader()],
         ));
