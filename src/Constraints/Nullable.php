@@ -31,10 +31,10 @@ class Nullable implements Constraint
      * @param Fastwf\Constraint\Api\Constraint|null $constraint the constraint to apply to the value when it's not null
      *                                              (null for no value control).
      */
-    public function __construct($nullable, $constraint = null)
+    public function __construct($nullable, &$constraint = null)
     {
         $this->nullable = $nullable;
-        $this->constraint = $constraint;
+        $this->constraint = &$constraint;
     }
 
     public function validate($node, $context)

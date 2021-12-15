@@ -2,6 +2,7 @@
 
 namespace Fastwf\Constraint\Build\Factory\OpenApi;
 
+use Fastwf\Constraint\Api\Constraint;
 use Fastwf\Constraint\Constraints\Chain;
 use Fastwf\Constraint\Constraints\Required;
 use Fastwf\Constraint\Constraints\Objects\Schema;
@@ -47,18 +48,11 @@ class ObjectFactory extends AnyFactory
         {
             $propertiesOptions = [];
             foreach ($properties as $property => $childSchema) {
-                $constraint = null;
-                $this->environment->loadSchema($childSchema, $constraint);
-
-                // Wrap the constraint into Required constraint
-                $isRequired = \in_array($property, $required);
-                $propertiesOptions[$property] = new Required($isRequired, $constraint);
-
-                // Remove the property 
-                if ($isRequired)
-                {
-                    unset($required[\array_search($property)]);
-                }
+                $propertiesOptions[$property] = $this->createPropertyConstraint(
+                    $required,
+                    $property,
+                    $childSchema
+                );
             }
             // Add required properties constraint for missing properties
             foreach ($required as $property) {
@@ -69,17 +63,43 @@ class ObjectFactory extends AnyFactory
         }
 
         // Create final constraint including or not other safe constraints
-        $constraint = new ObjectType();
+        $outConstraint = new ObjectType();
         if (!empty($options))
         {
-            $constraint = new Chain(
+            $outConstraint = new Chain(
                 true,
-                $constraint,
+                $outConstraint,
                 new Schema($options),
             );
         }
 
-        return $constraint;
+        return $outConstraint;
+    }
+
+    /**
+     * Create the child property constraint according to the child schema.
+     *
+     * @param array $required the list of required properties
+     * @param string $property the child property name
+     * @param array $childSchema the child schema
+     * @return Constraint the corresponding constraint
+     */
+    private function createPropertyConstraint(&$required, $property, $childSchema)
+    {
+        $constraint = null;
+        $this->environment->loadSchema($childSchema, $constraint);
+
+        // Wrap the constraint into Required constraint
+        $isRequired = \in_array($property, $required);
+        $reqConstraint = new Required($isRequired, $constraint);
+
+        // Remove the property 
+        if ($isRequired)
+        {
+            unset($required[\array_search($property, $required)]);
+        }
+
+        return $reqConstraint;
     }
 
 }

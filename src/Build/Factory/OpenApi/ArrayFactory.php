@@ -3,6 +3,7 @@
 namespace Fastwf\Constraint\Build\Factory\OpenApi;
 
 use Fastwf\Constraint\Constraints\Chain;
+use Fastwf\Constraint\Constraints\Arrays\Items;
 use Fastwf\Constraint\Constraints\Type\ArrayType;
 use Fastwf\Constraint\Constraints\Arrays\MaxItems;
 use Fastwf\Constraint\Constraints\Arrays\MinItems;
@@ -95,8 +96,10 @@ class ArrayFactory extends AnyFactory
     {
         if (\array_key_exists('items', $schema))
         {
-            $length = \array_push($constraints, null);
-            $this->environment->loadSchema($schema['items'], $constraints[$length - 1]);
+            $constraint = null;
+            $this->environment->loadSchema($schema['items'], $constraint);
+
+            \array_push($constraints, new Items($constraint));
         }
     }
 

@@ -54,9 +54,18 @@ class Schema implements Constraint
     public function __construct($options)
     {
         $this->properties = \array_key_exists('properties', $options) ? $options['properties'] : [];
-        $this->additionalProperties = \array_key_exists('additionalProperties', $options) ? $options['additionalProperties'] : null;
         $this->minProperties = \array_key_exists('minProperties', $options) ? $options['minProperties'] : 0;
         $this->maxProperties = \array_key_exists('maxProperties', $options) ? $options['maxProperties'] : null;
+
+        // Setup 'additionalProperties' using option reference
+        if (\array_key_exists('additionalProperties', $options))
+        {
+            $this->additionalProperties = &$options['additionalProperties'];
+        }
+        else
+        {
+            $this->additionalProperties = null;
+        }
     }
 
     public function validate($node, $context)

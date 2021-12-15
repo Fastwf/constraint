@@ -27,9 +27,10 @@ class AnyFactory implements IFactory
 
     public function create($schema)
     {
+        $constraint = $this->createType($schema);
         return new Nullable(
             \array_key_exists('nullable', $schema) && $schema['nullable'],
-            $this->createType($schema),
+            $constraint,
         );
     }
 

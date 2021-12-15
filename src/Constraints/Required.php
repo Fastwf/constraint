@@ -31,10 +31,10 @@ class Required implements Constraint
      * @param Constraint|null $constraint the constraint to apply to the value when it's defined
      *                        (null for no value control).
      */
-    public function __construct($required = true, $constraint = null)
+    public function __construct($required = true, &$constraint = null)
     {
         $this->required = $required;
-        $this->constraint = $constraint;
+        $this->constraint = &$constraint;
     }
 
     public function validate($node, $context)
