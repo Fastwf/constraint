@@ -24,14 +24,20 @@ class NumberFactory extends AnyFactory
         $this->addMaximumConstraint($schema, $constraints);
         $this->addMultipleOf($schema, $constraints);
 
-        return new Chain(
-            true,
-            $this->getTypeConstraint(),
-            new Chain(
-                false,
-                ...$constraints,
-            ),
-        );
+        $constraint = $this->getTypeConstraint();
+        if (!empty($constraints))
+        {
+            $constraint = new Chain(
+                true,
+                $constraint,
+                new Chain(
+                    false,
+                    ...$constraints,
+                ),
+            );
+        }
+
+        return $constraint;
     }
 
     /**
