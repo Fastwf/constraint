@@ -2,7 +2,9 @@
 
 namespace Fastwf\Constraint\Api;
 
+use Fastwf\Constraint\Data\Node;
 use Fastwf\Constraint\Data\Violation;
+use Fastwf\Constraint\Api\ValidationContext;
 use Fastwf\Constraint\Data\ViolationConstraint;
 
 /**
@@ -14,14 +16,14 @@ class ValidationContext
     /**
      * The root node currently evaluated.
      *
-     * @var Fastwf\Constraint\Data\Node
+     * @var Node
      */
     private $root;
 
     /**
      * The parent node of the current value node evaluated (is null when the root node is evaluated).
      *
-     * @var Fastwf\Constraint\Data\Node|null
+     * @var Node|null
      */
     private $parent;
 
@@ -34,7 +36,7 @@ class ValidationContext
     /**
      * Getter for root node.
      *
-     * @return Fastwf\Constraint\Data\Node the root node
+     * @return Node the root node
      */
     public function getRoot()
     {
@@ -44,7 +46,7 @@ class ValidationContext
     /**
      * Getter for parent node.
      *
-     * @return Fastwf\Constraint\Data\Node|null the parent node
+     * @return Node|null the parent node
      */
     public function getParent()
     {
@@ -57,8 +59,8 @@ class ValidationContext
      * @param mixed $value the value currently evaluated.
      * @param string $code the uniq code corresponding to the current constraint
      * @param array $parameters the constraint fail information as key/value pair
-     * @param Fastwf\Constraint\Data\Violation|null $violation the violation object to update or null to create a new violation object
-     * @return Fastwf\Constraint\Data\Violation the violation object created or updated
+     * @param Violation|null $violation the violation object to update or null to create a new violation object
+     * @return Violation the violation object created or updated
      */
     public function violation($value, $code, $parameters, $violation=null)
     {
@@ -75,8 +77,8 @@ class ValidationContext
     /**
      * Generate a sub context for the given parent.
      *
-     * @param Fastwf\Constraint\Data\Node $parent
-     * @return Fastwf\Constraint\Api\ValidationContext the sub context.
+     * @param Node $parent
+     * @return ValidationContext the sub context.
      */
     public function getSubContext($parent)
     {

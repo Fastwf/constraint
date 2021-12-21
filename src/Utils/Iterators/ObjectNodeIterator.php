@@ -2,6 +2,7 @@
 
 namespace Fastwf\Constraint\Utils\Iterators;
 
+use Fastwf\Constraint\Data\Node;
 use Fastwf\Constraint\Reflection\Property;
 
 /**
@@ -48,7 +49,7 @@ class ObjectNodeIterator implements \Iterator
     /**
      * The internal node corresponding to the current item.
      *
-     * @var \Fastwf\Constraint\Data\Node
+     * @var Node
      */
     private $current;
 
@@ -148,7 +149,7 @@ class ObjectNodeIterator implements \Iterator
     /**
      * Use the internal iterator to access to the current property name.
      *
-     * @return \Fastwf\Constraint\Reflection\Property the property object that allows to access to the property.
+     * @return Property the property object that allows to access to the property.
      */
     private function currentPropertyNode()
     {

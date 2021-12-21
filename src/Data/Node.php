@@ -107,7 +107,7 @@ class Node implements \IteratorAggregate
      * Return a node that hold the value associated to the given name.
      *
      * @param string $name the name of the key to query
-     * @return Fastwf\Constraint\Data\Node a node corresponding to the key
+     * @return Node a node corresponding to the key
      */
     public function __get($name)
     {
@@ -152,7 +152,7 @@ class Node implements \IteratorAggregate
      * Node factory from given arguments.
      *
      * @param array $args the node arguments ({@see Node::set($args)} for details)
-     * @return Fastwf\Constraint\Data\Node the node instanciated
+     * @return Node the node instanciated
      */
     public static function from($args=[])
     {

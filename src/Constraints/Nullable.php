@@ -20,7 +20,7 @@ class Nullable implements Constraint
     /**
      * The constraint to use to validate the value when the value is not null.
      *
-     * @var Fastwf\Constraint\Api\Constraint|null $constraint
+     * @var Constraint|null $constraint
      */
     protected $constraint;
 
@@ -28,8 +28,7 @@ class Nullable implements Constraint
      * Constructor
      *
      * @param boolean $nullable true to accept null values.
-     * @param Fastwf\Constraint\Api\Constraint|null $constraint the constraint to apply to the value when it's not null
-     *                                              (null for no value control).
+     * @param Constraint|null $constraint the constraint to apply to the value when it's not null (null for no value control).
      */
     public function __construct($nullable, &$constraint = null)
     {

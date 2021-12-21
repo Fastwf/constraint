@@ -3,6 +3,7 @@
 namespace Fastwf\Constraint\Api;
 
 use Fastwf\Constraint\Data\Violation;
+use Fastwf\Constraint\Api\TemplateProvider;
 use Fastwf\Interpolation\StringInterpolator;
 
 /**
@@ -14,14 +15,14 @@ class ViolationIterator
     /**
      * The template provider for error code.
      *
-     * @var Fastwf\Constraint\Api\TemplateProvider
+     * @var TemplateProvider
      */
     protected $provider;
 
     /**
      * The string interpolator to use to format the error.
      *
-     * @var Fastwf\Interpolation\StringInterpolator
+     * @var StringInterpolator
      */
     protected $interpolator;
 
@@ -34,7 +35,7 @@ class ViolationIterator
     /**
      * Iterate and inject messages interpolated for detected constraint violation.
      *
-     * @param Fastwf\Constraint\Data\Violation $violation
+     * @param Violation $violation
      * @return void
      */
     public function iterate($violation)

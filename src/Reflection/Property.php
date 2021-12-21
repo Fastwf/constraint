@@ -2,6 +2,8 @@
 
 namespace Fastwf\Constraint\Reflection;
 
+use Fastwf\Constraint\Data\Node;
+use Fastwf\Constraint\Reflection\Property;
 use Fastwf\Constraint\Reflection\UndefinedProperty;
 
 /**
@@ -20,7 +22,7 @@ abstract class Property
     /**
      * Allows to access to the value.
      *
-     * @return Fastwf\Constraint\Data\Node the value hold by object property.
+     * @return Node the value hold by object property.
      */
     public abstract function get($object);
 
@@ -31,7 +33,7 @@ abstract class Property
      *
      * @param \ReflectionClass $classReflection the class reflection of the object holding the property $name.
      * @param string $name the property name to access.
-     * @return Fastwf\Constraint\Reflection\Property the property accessor.
+     * @return Property the property accessor.
      */
     public static function getInstance($classReflection, $name)
     {

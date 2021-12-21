@@ -13,7 +13,7 @@ class Not implements Constraint
     /**
      * The constraint that must be used for not validation.
      *
-     * @var Fastwf\Constraint\Api\Constraint
+     * @var Constraint
      */
     protected $constraint;
 

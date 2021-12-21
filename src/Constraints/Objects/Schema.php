@@ -22,7 +22,7 @@ class Schema implements Constraint
     /**
      * The value constraint of unreferenced properties.
      *
-     * @var Fastwf\Constraint\Api\Constraint
+     * @var Constraint
      */
     private $additionalProperties;
 
@@ -159,10 +159,10 @@ class Schema implements Constraint
     /**
      * Create or update the violation object and inject the child property violation.
      *
-     * @param Fastwf\Constraint\Data\Violation $violation the parent violation object (provided by reference)
+     * @param Violation $violation the parent violation object (provided by reference)
      * @param object|array $value the parent value
      * @param string $property the property name associated to $propertyViolation
-     * @param Fastwf\Constraint\Data\Violation $propertyViolation the child property violation
+     * @param Violation $propertyViolation the child property violation
      * @return void
      */
     protected function setChildViolation(&$violation, $value, $property, $propertyViolation)

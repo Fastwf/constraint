@@ -2,7 +2,10 @@
 
 namespace Fastwf\Constraint\Constraints;
 
+use Fastwf\Constraint\Data\Node;
 use Fastwf\Constraint\Api\Constraint;
+use Fastwf\Constraint\Data\Violation;
+use Fastwf\Constraint\Api\ValidationContext;
 
 /**
  * Specific constraint validation that chain constraints and allows to pass all constraint or stop on first violation.
@@ -40,7 +43,7 @@ class Chain implements Constraint
      * Merge violations on the first violation item of the violations array.
      *
      * @param array $violations a non empty array of violation object (no length check)
-     * @return Fastwf\Constraint\Data\Violation
+     * @return Violation
      */
     private function mergeViolations($violations)
     {
@@ -59,9 +62,9 @@ class Chain implements Constraint
     /**
      * Use constraints to validate the node value and return all violation constraints or null when value is valid.
      *
-     * @param Fastwf\Constraint\Data\Node $node the node value to validate
-     * @param Fastwf\Constraint\Api\ValidationContext $context the validation context
-     * @return Fastwf\Constraint\Data\Violation|null the violation or null
+     * @param Node $node the node value to validate
+     * @param ValidationContext $context the validation context
+     * @return Violation|null the violation or null
      */
     protected function validateAll($node, $context)
     {
@@ -83,9 +86,9 @@ class Chain implements Constraint
     /**
      * Use constraints to validate the node value and return the first violation constraint or null when value is valid.
      *
-     * @param Fastwf\Constraint\Data\Node $node the node value to validate
-     * @param Fastwf\Constraint\Api\ValidationContext $context the validation context
-     * @return Fastwf\Constraint\Data\Violation|null the violation or null
+     * @param Node $node the node value to validate
+     * @param ValidationContext $context the validation context
+     * @return Violation|null the violation or null
      */
     protected function validateUntilViolation($node, $context)
     {

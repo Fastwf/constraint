@@ -4,6 +4,7 @@ namespace Fastwf\Constraint\Reflection;
 
 use Fastwf\Constraint\Data\Node;
 use Fastwf\Constraint\Reflection\Method;
+use Fastwf\Constraint\Reflection\IMethod;
 use Fastwf\Constraint\Reflection\Property;
 use Fastwf\Constraint\Reflection\UndefinedGetterMethod;
 use Fastwf\Constraint\Reflection\UndefinedSetterMethod;
@@ -44,7 +45,7 @@ class StdProperty extends Property
     /**
      * Search the getter method when it's required and return the getter method.
      *
-     * @return Fastwf\Constraint\Reflection\IMethod a getter method
+     * @return IMethod a getter method
      */
     private function getter()
     {

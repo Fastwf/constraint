@@ -19,14 +19,14 @@ class Items implements Constraint
     /**
      * The constraint to apply to the array items.
      *
-     * @var Fastwf\Constraint\Api\Constraint
+     * @var Constraint
      */
     protected $constraint;
 
     /**
      * Constructor.
      *
-     * @param Fastwf\Constraint\Api\Constraint $constraint the constraints on array items
+     * @param Constraint $constraint the constraints on array items
      */
     public function __construct($constraint)
     {

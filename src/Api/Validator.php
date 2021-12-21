@@ -3,6 +3,8 @@
 namespace Fastwf\Constraint\Api;
 
 use Fastwf\Constraint\Data\Node;
+use Fastwf\Constraint\Api\Constraint;
+use Fastwf\Constraint\Data\Violation;
 use Fastwf\Constraint\Api\ValidationContext;
 use Fastwf\Constraint\Api\ViolationIterator;
 use Fastwf\Constraint\Api\SimpleTemplateProvider;
@@ -16,21 +18,21 @@ class Validator
     /**
      * The root constraint to use to validate a value.
      *
-     * @var Fastwf\Constraint\Api\Constraint
+     * @var Constraint
      */
     protected $constraint;
 
     /**
      * The root violation node corresponding to the last validated value.
      *
-     * @var Fastwf\Constraint\Data\Violation
+     * @var Violation
      */
     protected $violation;
 
     /**
      * The violation iterator for injecting error message from error code.
      *
-     * @var Fastwf\Constraint\Api\ViolationIterator
+     * @var ViolationIterator
      */
     protected $iterator;
 
@@ -68,7 +70,7 @@ class Validator
     /**
      * Allows to obtain the validation object containing informations about constraint violated.
      *
-     * @return Fastwf\Constraint\Data\Violation|null the validation or null when the value is validated or validate is not called
+     * @return Violation|null the validation or null when the value is validated or validate is not called
      */
     public function getViolations()
     {
