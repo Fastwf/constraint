@@ -142,7 +142,7 @@ class Node implements \IteratorAggregate
      *
      * @return \Traversable
      */
-    public function getIterator()
+    public function getIterator(): \Traversable
     {
         // By default a simple value have not items or key/value pairs
         return new \EmptyIterator();

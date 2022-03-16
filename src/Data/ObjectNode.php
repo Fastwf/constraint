@@ -71,7 +71,7 @@ class ObjectNode extends Node
         return $builtIn;
     }
 
-    public function getIterator()
+    public function getIterator(): \Traversable
     {
         return $this->reflect === null
             ? new \EmptyIterator()

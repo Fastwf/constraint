@@ -4,7 +4,6 @@ namespace Fastwf\Constraint\Api;
 
 use Fastwf\Constraint\Data\Node;
 use Fastwf\Constraint\Data\Violation;
-use Fastwf\Constraint\Api\ValidationContext;
 use Fastwf\Constraint\Data\ViolationConstraint;
 
 /**

@@ -22,14 +22,14 @@ class ViolationIterator
     /**
      * The string interpolator to use to format the error.
      *
-     * @var StringInterpolator
+     * @var InterpolatorInterface
      */
     protected $interpolator;
 
-    public function __construct($templateProvider)
+    public function __construct($templateProvider, $interpolator = null)
     {
         $this->provider = $templateProvider;
-        $this->interpolator = new StringInterpolator();
+        $this->interpolator = $interpolator === null ? new StringInterpolator() : $interpolator;
     }
 
     /**

@@ -39,7 +39,7 @@ class ArrayNode extends Node
         return $builtIn;
     }
 
-    public function getIterator()
+    public function getIterator(): \Traversable
     {
         return new ArrayNodeIterator($this->value);
     }

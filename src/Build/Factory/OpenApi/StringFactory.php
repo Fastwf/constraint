@@ -26,7 +26,6 @@ use Fastwf\Constraint\Build\Factory\OpenApi\AnyFactory;
 use Fastwf\Constraint\Constraints\String\DateTimeFormat;
 use Fastwf\Constraint\Constraints\String\HostnameFormat;
 use Fastwf\Constraint\Constraints\String\Base64UrlFormat;
-use Fastwf\Constraint\Build\Factory\OpenApi\StringFactory;
 
 /**
  * String constraint factory.

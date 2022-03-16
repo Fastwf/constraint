@@ -3,8 +3,6 @@
 namespace Fastwf\Constraint\Reflection;
 
 use Fastwf\Constraint\Data\Node;
-use Fastwf\Constraint\Reflection\Property;
-use Fastwf\Constraint\Reflection\UndefinedProperty;
 
 /**
  * Reflection property API to use to simplify object property access.

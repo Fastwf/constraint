@@ -12,7 +12,6 @@ use Fastwf\Constraint\Build\Factory\OpenApi\ArrayFactory;
 use Fastwf\Constraint\Build\Factory\OpenApi\NumberFactory;
 use Fastwf\Constraint\Build\Factory\OpenApi\ObjectFactory;
 use Fastwf\Constraint\Build\Factory\OpenApi\StringFactory;
-use Fastwf\Constraint\Build\Environment\OpenApiEnvironment;
 use Fastwf\Constraint\Build\Factory\OpenApi\BooleanFactory;
 use Fastwf\Constraint\Build\Factory\OpenApi\IntegerFactory;
 use Fastwf\Constraint\Build\Factory\OpenApi\Logical\NotFactory;

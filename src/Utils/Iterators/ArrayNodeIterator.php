@@ -35,17 +35,17 @@ class ArrayNodeIterator implements \Iterator
         return $this->iter->key();
     }
 
-    public function next()
+    public function next(): void
     {
         $this->iter->next();
     }
 
-    public function rewind()
+    public function rewind(): void
     {
         $this->iter->rewind();
     }
 
-    public function valid()
+    public function valid(): bool
     {
         return $this->iter->valid();
     }

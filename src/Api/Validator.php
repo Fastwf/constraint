@@ -5,8 +5,10 @@ namespace Fastwf\Constraint\Api;
 use Fastwf\Constraint\Data\Node;
 use Fastwf\Constraint\Api\Constraint;
 use Fastwf\Constraint\Data\Violation;
+use Fastwf\Constraint\Api\TemplateProvider;
 use Fastwf\Constraint\Api\ValidationContext;
 use Fastwf\Constraint\Api\ViolationIterator;
+use Fastwf\Interpolation\InterpolatorInterface;
 use Fastwf\Constraint\Api\SimpleTemplateProvider;
 
 /**
@@ -43,10 +45,20 @@ class Validator
      */
     protected $isMessageInterpolated;
 
-    public function __construct($constraint, $provider = null)
+    /**
+     * Constructor.
+     *
+     * @param Constraint $constraint the constraint to use for validation.
+     * @param TemplateProvider $provider the tempmlate provider to use to generate error message.
+     * @param InterpolatorInterface $interpolator the interpolator instance to use to interpolate templates.
+     */
+    public function __construct($constraint, $provider = null, $interpolator = null)
     {
         $this->constraint = $constraint;
-        $this->iterator = new ViolationIterator($provider === null ? new SimpleTemplateProvider() : $provider);
+        $this->iterator = new ViolationIterator(
+            $provider === null ? new SimpleTemplateProvider() : $provider,
+            $interpolator,
+        );
     }
 
     /**

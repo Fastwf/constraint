@@ -106,20 +106,20 @@ class ObjectNodeIterator implements \Iterator
         return $this->key;
     }
 
-    public function next()
+    public function next(): void
     {
         $this->iter->next();
         $this->nextReadableProperty();
     }
 
-    public function rewind()
+    public function rewind(): void
     {
         $this->iter->rewind();
 
         $this->nextReadableProperty();
     }
 
-    public function valid()
+    public function valid(): bool
     {
         return $this->iter->valid();
     }
